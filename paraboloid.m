@@ -15,5 +15,29 @@ y_range = Y_MIN:INCREMENT:Y_MAX;
 [X, Y] = meshgrid(x_range, y_range);
 Z = X.^2 + Y.^2; % z = x^2 + y^2
 
+% Generate level curves
+% Find max constant required
+
+% Generate curves using parametric circle equations
+r_index = 1;
+for r = 0:0.5:2
+    theta_index = 1;
+    for theta = 0:0.1:(2*pi+0.1)
+        X_curves(theta_index, r_index) = r*cos(theta);
+        Y_curves(theta_index, r_index) = r*sin(theta);
+        theta_index = theta_index + 1;
+    end
+    r_index = r_index + 1;
+end
+
 % Graph paraboloid
+figure();
+paraboloid_ax = subplot(2,2,1);
 paraboloid_gr = surf(X, Y, Z);
+
+% Graph level curves
+level_curves_ax = subplot(2,2,2);
+hold all;
+for plot_index = 1:5
+    plot(X_curves(:, plot_index), Y_curves(:, plot_index));
+end

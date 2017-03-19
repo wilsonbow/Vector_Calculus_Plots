@@ -1,2 +1,2 @@
-# Vector_Calculus_Plots
+# Vector Calculus Plots
 MATLAB Scripts which demonstrate multivariable calculus graphically.

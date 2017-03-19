@@ -8,6 +8,7 @@ X_MAX = 2;
 Y_MIN = -2;
 Y_MAX = 2;
 INCREMENT = 0.1;
+QUIVER_INCREMENT = 0.5;
 
 % Generate points for the paraboloid
 x_range = X_MIN:INCREMENT:X_MAX;
@@ -33,8 +34,13 @@ end
 
 % Generate vector field parameters (for "quiver")
 %   U represents Df/Dx, V represents Df/Dy both at P(x,y)
-U = 2 .* X;
-V = 2 .* Y;
+% Create new X, Y meshgrid for cosmetic purposes
+x_quiver_range = X_MIN:QUIVER_INCREMENT:X_MAX;
+y_quiver_range = Y_MIN:QUIVER_INCREMENT:Y_MAX;
+[X_quiver, Y_quiver] = meshgrid(x_quiver_range, y_quiver_range);
+
+U_quiver = 2 .* X_quiver;
+V_quiver = 2 .* Y_quiver;
 
 %% GRAPHING FUNCTIONS
 % Graph paraboloid
@@ -50,4 +56,5 @@ for plot_index = 1:5
 end
 
 % Graph vector field
-quiver(X, Y, U, V);
+quiver(X_quiver, Y_quiver, U_quiver, V_quiver);
+set(level_curves_ax, 'XLim', [-3 3], 'YLim', [-3 3]); % rescale axes

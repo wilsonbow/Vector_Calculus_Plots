@@ -16,7 +16,8 @@ y_range = Y_MIN:INCREMENT:Y_MAX;
 Z = X.^2 + Y.^2; % z = x^2 + y^2
 
 % Generate level curves
-% Find max constant required
+% TODO - Find max constant required
+%           in order to auto-find range of consts to use
 
 % Generate curves using parametric circle equations
 r_index = 1;
@@ -30,6 +31,12 @@ for r = 0:0.5:2
     r_index = r_index + 1;
 end
 
+% Generate vector field parameters (for "quiver")
+%   U represents Df/Dx, V represents Df/Dy both at P(x,y)
+U = 2 .* X;
+V = 2 .* Y;
+
+%% GRAPHING FUNCTIONS
 % Graph paraboloid
 figure();
 paraboloid_ax = subplot(2,2,1);
@@ -41,3 +48,6 @@ hold all;
 for plot_index = 1:5
     plot(X_curves(:, plot_index), Y_curves(:, plot_index));
 end
+
+% Graph vector field
+quiver(X, Y, U, V);
